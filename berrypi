@@ -677,7 +677,7 @@ if __name__ == "__main__":
 	   
 	    except ValueError:
 		print(structure_kmesh)
-		print('Error: Please enter the kmesh in the format of "-kx:x:x"')
+		print('Value Error: Please enter the integers into kmesh in the format of "-kx:x:x"')
 		exit(1)      
 
         #Determines whether you should include lapw1 in the automation
