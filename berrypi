@@ -670,10 +670,15 @@ if __name__ == "__main__":
         #automation disabling option
         elif argName in ('-n', '--no-auto'):
             checkAuto = False
-        
+
         #For number of divisons 
         elif argName in ('-k', '--kdiv'):
-            structure_kmesh = [ int(i) for i in argValue.split(':') ]
+   	    try: structure_kmesh = [ int(i) for i in argValue.split(':') ] 
+	   
+	    except ValueError:
+		print(structure_kmesh)
+		print('Error: Please enter the kmesh in the format of "-kx:x:x"')
+		exit(1)      
 
         #Determines whether you should include lapw1 in the automation
         elif argName in ('-l', '--no-lapw'):
@@ -691,6 +696,26 @@ if __name__ == "__main__":
         else:
             print("Invalid argument {} - {}").format(argName, argValue)
             sys.exit(2)
+
+    #Makes sure that the length of the tuple is 3
+    if len(structure_kmesh)!=3:
+	print(structure_kmesh)
+        print('Error: Please check that you have 3 constants in the kmesh')
+        exit(1)
+
+    #Makes sure that there are no values of 0 in the kmesh
+    elif 0 in structure_kmesh:
+	print(structure_kmesh)
+        print('Error: Cannot have a dimension of 0 in the kmesh')
+        exit(1)
+
+		
+	#Determines the upper size limit of the kmesh
+	elif max(structure_kmesh)>11:
+		print(structure_kmesh)
+	    print('Error: Please make sure that your kmesh values are in the range of 1 - 10')
+	    exit(1)
+		
 
     #if configuration values are provided, create config file to pass
     #to the automation and calculations
@@ -752,7 +777,7 @@ if __name__ == "__main__":
     
 
     #print " --- BerryPI Computation Completed ---"
-    print "\nCompleted using BerryPI version 1.0"
+    print "\nCompleted using BerryPI version 0.1"
     print "\nBerryPI is a joint project between Thunder Bay Regional Research Institute and Lakehead University"
     print "\nSuggested reference:\n  S.J.Ahmed, J.Kivinen, B.Zaporzan, L.Curiel, S.Pichardo, O.Rubel,Comp. Phys. Commun. 184, 647 (2013)"	
     print ("\nQuestions and comments are to be directed to\n  1.Dr. Oleg Rubel \n    Lakehead University\n          and\n    Thunder Bay Regional Research institute\n    290 Munro Street, Thunder Bay, ON Canada P7A 7T1\n    Tel:+1 (807) 766-3350 \n    E-mail:rubelo@tbh.net\n    URL:http://www.tbrri.com/~orubel")
