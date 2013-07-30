@@ -709,14 +709,24 @@ if __name__ == "__main__":
         print('Error: Cannot have a dimension of 0 in the kmesh')
         exit(1)
 
-		
-	#Determines the upper size limit of the kmesh
-	elif max(structure_kmesh)>11:
-		print(structure_kmesh)
-	    print('Error: Please make sure that your kmesh values are in the range of 1 - 10')
-	    exit(1)
-		
 
+     #Determines the upper size limit of the kmesh
+    elif max(structure_kmesh)>10:
+        print('Calculations with a dimension of more than 10 will take a long time to calculate. Are you sure you want to continue?')
+
+        check_10 = raw_input('Type in "Y" to continue or press any other button to exit\n')
+
+        if check_10=='Y':
+            pass
+        else:
+            exit(1)
+			
+	#Determines whether or not W2WANNIER is installed
+    try:
+        with open('/act/W2WANNIER/util/w2w'): pass
+    except IOError:
+        print('Please make sure that W2W is installed before trying to run BerryPI')
+		
     #if configuration values are provided, create config file to pass
     #to the automation and calculations
     if structure_name or structure_path:
