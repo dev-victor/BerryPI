@@ -644,10 +644,9 @@ if __name__ == "__main__":
 
 	#automates the inputting of kmesh values
     list1=['-k','3:3:3']
-    k_mesh_values=raw_input('What kmesh values would you like? (e.g. 2:2:2)[default is 3:3:3]\n')
+    k_mesh_values=raw_input('What kmesh values would you like? (e.g. 2:2:2)\n')
     list1[1]=k_mesh_values
     list1=tuple(list1)
-    print(list1)
     list2=('-p',os.getcwd())
     opts.append(list1)
     opts.append(list2)
@@ -686,7 +685,6 @@ if __name__ == "__main__":
    	    try: structure_kmesh = [ int(i) for i in argValue.split(':') ] 
 	   
 	    except ValueError:
-		print(structure_kmesh)
 		print('Value Error: Please enter the integers into kmesh in the format of "-kx:x:x"')
 		exit(1)      
 
@@ -709,17 +707,21 @@ if __name__ == "__main__":
 
     #Makes sure that the length of the tuple is 3
     if len(structure_kmesh)!=3:
-	print(structure_kmesh)
+	print('You entered: ' +str(structure_kmesh))
         print('Error: Please check that you have 3 constants in the kmesh')
         exit(1)
 
     #Makes sure that there are no values of 0 in the kmesh
     elif 0 in structure_kmesh:
-	print(structure_kmesh)
+	print('You entered: ' + str(structure_kmesh))
         print('Error: Cannot have a dimension of 0 in the kmesh')
         exit(1)
-
-
+		
+    #Sets the lower bound of the dimensions
+    elif min(structure_kmesh)<0:
+        print('You cannot have negative integers as kmesh values')
+        exit(1)
+		
      #Determines the upper size limit of the kmesh
     elif max(structure_kmesh)>10:
         print('Calculations with a dimension of more than 10 will take a long time to calculate. Are you sure you want to continue?')
