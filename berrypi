@@ -69,7 +69,7 @@ def runAutomation(configFile):
     otherwise it returns True. This allows for several automation
     processes to be batched.
     '''
-    print(DEFAULT_PREFIX + "Starting BerryPi Automation for {}").format(configFile['Structure Name'])
+    print(DEFAULT_PREFIX + "Starting BerryPI Automation for {}").format(configFile['Structure Name'])
     
     #get the starting directory and switch to it
     oldCurrentWorkingDirectory = os.getcwd()
