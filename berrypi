@@ -642,6 +642,16 @@ if __name__ == "__main__":
     #boolean for whether to automate the entire process
     checkAuto = True
 
+	#automates the inputting of kmesh values
+    list1=['-k','3:3:3']
+    k_mesh_values=raw_input('What kmesh values would you like? (e.g. 2:2:2)[default is 3:3:3]\n')
+    list1[1]=k_mesh_values
+    list1=tuple(list1)
+    print(list1)
+    list2=('-p',os.getcwd())
+    opts.append(list1)
+    opts.append(list2)
+
     #defaults
     structure_name = ''
     structure_path = ''
