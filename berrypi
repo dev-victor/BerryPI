@@ -87,7 +87,7 @@ def runAutomation(configFile):
         string = DEFAULT_PREFIX + str(tempFileName)
         string += ' does not exist'
         print string
-		print(DEFAULT_PREFIX + 'The correct .struct file has not been found. BerryPI will now close ...)
+        print(DEFAULT_PREFIX + 'The correct .struct file has not been found. BerryPI will now close ...')
         exit(1)		
         return False
 
