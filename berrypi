@@ -47,7 +47,8 @@ def performCalculation(configFile):
         print(DEFAULT_PREFIX + "Checking existance of {}").format(tempFilename)
         if not b_PyError.fileExists(tempFilename):
             print( DEFAULT_PREFIX + "{} does not exist, cannot finish calculation").format(tempFilename)
-        else: print DEFAULT_PREFIX + '-- OK'
+            exit(2)
+		else: print DEFAULT_PREFIX + '-- OK'
 
     #perform the main calculation
     mainCalculation = b_PyCalc.MainCalculationContainer(
